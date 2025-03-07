@@ -106,7 +106,7 @@ export default function RootLayout({
         />
       </head>
       <body className={roboto.className}>
-        <Providers initialLanguage="vi">
+        <Providers>
           {children}
           <TempoInit />
           <GoogleAnalytics gaId="G-XXXXXXXXXX" />
