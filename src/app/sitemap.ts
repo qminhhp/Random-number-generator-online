@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next";
-import sitemapRanges from "./sitemap-ranges";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://easyrandomnumbers.com";
@@ -18,11 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily" as const,
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/mothers-teachings`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
   ];
 
-  // Get all the range-specific routes from the separate file
-  const rangeRoutes = sitemapRanges();
-
-  // Combine all routes
-  return [...mainRoutes, ...rangeRoutes];
+  // Return only the main routes
+  return mainRoutes;
 }
