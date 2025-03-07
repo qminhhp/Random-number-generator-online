@@ -117,21 +117,21 @@ export default function CategoryPage({ params }: Props) {
           </div>
 
           <div className="mb-8">
-            <MothersTeachingBanner lang="en" />
+            <MothersTeachingBanner />
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
             <h3 className="text-lg font-semibold mb-4">
               All {categoryName} Ranges
             </h3>
-            <CommonRangesLinks category={category} limit={100} lang="en" />
+            <CommonRangesLinks category={category} limit={100} />
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
             <h3 className="text-lg font-semibold mb-4">
               Browse Other Categories
             </h3>
-            <CategoryLinks lang="en" />
+            <CategoryLinks />
           </div>
 
           <div className="mt-8 text-center">

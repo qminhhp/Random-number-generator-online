@@ -97,7 +97,7 @@ export default function PopularRangesPage() {
       <main className="container py-6 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <MothersTeachingBanner lang="en" />
+            <MothersTeachingBanner />
           </div>
 
           <div className="mb-8 text-center">
@@ -113,7 +113,7 @@ export default function PopularRangesPage() {
 
           <div className="mb-8">
             <h3 className="text-xl font-semibold mb-4">Browse by Category</h3>
-            <CategoryLinks className="mb-6" lang="en" />
+            <CategoryLinks className="mb-6" />
 
             <div className="space-y-8">
               {categories.map((category) => (
@@ -127,11 +127,7 @@ export default function PopularRangesPage() {
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                     {category.description}
                   </p>
-                  <CommonRangesLinks
-                    category={category.id}
-                    limit={12}
-                    lang="en"
-                  />
+                  <CommonRangesLinks category={category.id} limit={12} />
                   <div className="mt-2 text-right">
                     <Link
                       href={`/category/${category.id}`}
