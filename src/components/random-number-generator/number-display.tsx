@@ -65,7 +65,7 @@ export function NumberDisplay({
       )}
     >
       {value === null ? (
-        <span className="text-muted-foreground">Press generate</span>
+        <span className="text-muted-foreground">Generating...</span>
       ) : Array.isArray(value) ? (
         <div className="flex max-w-full flex-wrap justify-center gap-2">
           {value.map((item, index) => (
