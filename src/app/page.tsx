@@ -44,7 +44,7 @@ export default function Home() {
           <RandomNumberGenerator />
 
           <div className="mt-8">
-            <MothersTeachingBanner lang="en" />
+            <MothersTeachingBanner />
           </div>
 
           <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
@@ -59,7 +59,7 @@ export default function Home() {
                 View All →
               </Link>
             </div>
-            <CommonRangesLinks limit={12} lang="en" />
+            <CommonRangesLinks limit={12} />
           </div>
 
           <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">

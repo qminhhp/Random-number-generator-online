@@ -1,59 +1,29 @@
 "use client";
 
-import { Language, translations } from "@/lib/i18n";
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, createContext, useContext } from "react";
 
 type LanguageContextType = {
-  language: Language;
-  setLanguage: (language: Language) => void;
-  t: (key: keyof (typeof translations)["en"]) => string;
+  language: string;
+  setLanguage: (language: string) => void;
+  t: (key: string) => string;
 };
 
 const LanguageContext = createContext<LanguageContextType>({
   language: "en",
   setLanguage: () => {},
-  t: (key) => key as string,
+  t: (key) => key,
 });
 
 export function LanguageProvider({
   children,
-  initialLanguage = "en",
 }: {
   children: ReactNode;
-  initialLanguage?: Language;
+  initialLanguage?: string;
 }) {
-  const [language, setLanguage] = useState<Language>(initialLanguage);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && translations[savedLanguage]) {
-      setLanguage(savedLanguage);
-    } else {
-      // If no saved language, use the initial language from URL
-      setLanguage(initialLanguage);
-      localStorage.setItem("language", initialLanguage);
-    }
-  }, [initialLanguage]);
-
-  const handleSetLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    localStorage.setItem("language", newLanguage);
-  };
-
-  const t = (key: keyof (typeof translations)["en"]) => {
-    if (!mounted) return key as string;
-    return (
-      translations[language][key] || translations["en"][key] || (key as string)
-    );
-  };
+  // Always English
+  const language = "en";
+  const handleSetLanguage = () => {};
+  const t = (key: string) => key;
 
   return (
     <LanguageContext.Provider

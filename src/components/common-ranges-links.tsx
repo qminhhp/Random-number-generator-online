@@ -138,8 +138,7 @@ export function CommonRangesLinks({
   category,
   limit = 20,
   className = "",
-  lang = "en",
-}: CommonRangesLinksProps & { lang?: string }) {
+}: CommonRangesLinksProps) {
   // Filter by category if provided
   const filteredRanges = category
     ? commonRanges.filter((range) => range.category === category)
@@ -155,11 +154,7 @@ export function CommonRangesLinks({
       {limitedRanges.map((range) => (
         <Link
           key={`${range.min}-${range.max}`}
-          href={
-            lang === "en"
-              ? `/${range.min}-${range.max}`
-              : `/${lang}/${range.min}-${range.max}`
-          }
+          href={`/${range.min}-${range.max}`}
           className="text-sm px-3 py-2 rounded-md bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 transition-colors text-blue-700 dark:text-blue-300 no-underline text-center truncate"
           title={
             range.label || `Random number between ${range.min} and ${range.max}`
@@ -176,10 +171,7 @@ interface CategoryLinksProps {
   className?: string;
 }
 
-export function CategoryLinks({
-  className = "",
-  lang = "en",
-}: CategoryLinksProps & { lang?: string }) {
+export function CategoryLinks({ className = "" }: CategoryLinksProps) {
   // Get unique categories
   const categories = Array.from(
     new Set(commonRanges.map((range) => range.category)),
@@ -190,11 +182,7 @@ export function CategoryLinks({
       {categories.map((category) => (
         <Link
           key={category}
-          href={
-            lang === "en"
-              ? `/category/${category}`
-              : `/${lang}/category/${category}`
-          }
+          href={`/category/${category}`}
           className="text-sm px-3 py-2 rounded-md bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/30 dark:hover:bg-purple-800/50 transition-colors text-purple-700 dark:text-purple-300 no-underline capitalize"
         >
           {category}

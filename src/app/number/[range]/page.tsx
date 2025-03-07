@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function RangePage({ params }: Props) {
+export default function NumberRangePage({ params }: Props) {
   const range = params.range;
 
   // Validate the range format (allow negative numbers)

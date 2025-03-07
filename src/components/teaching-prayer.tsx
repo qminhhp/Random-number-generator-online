@@ -1,40 +1,4 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { mothersTeachings } from "@/data/mothers-teachings";
-import { useLanguage } from "@/contexts/language-context";
-import { formatString } from "@/lib/i18n";
-import { Sparkles, ExternalLink } from "lucide-react";
-import { useState } from "react";
-import Link from "next/link";
-
-export function TeachingPrayer() {
-  const { t } = useLanguage();
-  const [isPraying, setIsPraying] = useState(false);
-  const [selectedTeaching, setSelectedTeaching] = useState<
-    (typeof mothersTeachings)[0] | null
-  >(null);
-  const [showDialog, setShowDialog] = useState(false);
-
-  const receiveTeaching = () => {
-    if (isPraying) return;
-
-    setIsPraying(true);
-
-    // Select a random teaching
-    const randomIndex = Math.floor(Math.random() * mothersTeachings.length);
-
-    // After a short delay to simulate prayer time
-    setTimeout(() => {
-      setIsPraying(false);
+aying(false);
       setSelectedTeaching(mothersTeachings[randomIndex]);
       setShowDialog(true);
     }, 2000);
