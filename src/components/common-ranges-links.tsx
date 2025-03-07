@@ -151,9 +151,9 @@ export function CommonRangesLinks({
     <div
       className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 ${className}`}
     >
-      {limitedRanges.map((range) => (
+      {limitedRanges.map((range, index) => (
         <Link
-          key={`${range.min}-${range.max}`}
+          key={`${range.min}-${range.max}-${index}`}
           href={`/${range.min}-${range.max}`}
           className="text-sm px-3 py-2 rounded-md bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 transition-colors text-blue-700 dark:text-blue-300 no-underline text-center truncate"
           title={
