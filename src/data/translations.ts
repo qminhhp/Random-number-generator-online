@@ -228,17 +228,6 @@ export const translations = {
     hexadecimal: "Thập lục phân",
     binary: "Nhị phân",
 
-    // Advanced options
-    advancedOptions: "Tùy chọn nâng cao",
-    configureSettings: "Cấu hình cài đặt bổ sung",
-    numberCount: "Số lượng",
-    generateMultiple: "Tạo nhiều số cùng một lúc (tối đa 100)",
-    numberFormat: "Định dạng số",
-    selectFormat: "Chọn định dạng",
-    decimal: "Thập phân",
-    hexadecimal: "Thập lục phân",
-    binary: "Nhị phân",
-
     // Digit generator
     numberOfDigits: "Số lượng chữ số",
     selectDigits: "Chọn số chữ số",
