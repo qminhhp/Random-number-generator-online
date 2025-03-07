@@ -2,27 +2,33 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Copy, Dices, RefreshCw, Save, Share2, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
-import { AdvancedOptions } from "./advanced-options";
-import { DigitGenerator } from "./digit-generator";
+import { Copy, Share2, Sparkles } from "lucide-react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import {
   GeneratorMode,
   GeneratorModeSelector,
 } from "./generator-mode-selector";
-import { History, HistoryItem } from "./history";
-import { ListGenerator } from "./list-generator";
-import { LotteryGenerator } from "./lottery-generator";
 import { NumberDisplay } from "./number-display";
-import { PhoneGenerator } from "./phone-generator";
-import { PinGenerator } from "./pin-generator";
 import { QuickAccessButtons } from "./quick-access-buttons";
 import { RangeInputs } from "./range-inputs";
-import { SpecialGenerator, SpecialType } from "./special-generator";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+import type { HistoryItem } from "./history";
+import type { SpecialType } from "./special-generator";
+
+// Import lazy-loaded components
+import {
+  LazyHistory,
+  LazyAdvancedOptions,
+  LazyDigitGenerator,
+  LazyPinGenerator,
+  LazyPhoneGenerator,
+  LazyListGenerator,
+  LazyLotteryGenerator,
+  LazySpecialGenerator,
+} from "./lazy-components";
 
 interface RandomNumberGeneratorProps {
   initialMin?: number;
@@ -481,86 +487,150 @@ export function RandomNumberGenerator({
             </CardContent>
           </Card>
 
-          <AdvancedOptions
-            count={count}
-            onCountChange={setCount}
-            format={format}
-            onFormatChange={setFormat}
-          />
+          <Suspense
+            fallback={
+              <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+                Loading options...
+              </div>
+            }
+          >
+            <LazyAdvancedOptions
+              count={count}
+              onCountChange={setCount}
+              format={format}
+              onFormatChange={setFormat}
+            />
+          </Suspense>
         </>
       )}
 
       {mode === "digits" && (
-        <DigitGenerator
-          digits={digits}
-          onDigitsChange={setDigits}
-          onGenerate={generateRandom}
-          isGenerating={isGenerating}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+              Loading digit generator...
+            </div>
+          }
+        >
+          <LazyDigitGenerator
+            digits={digits}
+            onDigitsChange={setDigits}
+            onGenerate={generateRandom}
+            isGenerating={isGenerating}
+          />
+        </Suspense>
       )}
 
       {mode === "pin" && (
-        <PinGenerator
-          length={pinLength}
-          onLengthChange={setPinLength}
-          allowRepeats={allowRepeats}
-          onAllowRepeatsChange={setAllowRepeats}
-          onGenerate={generateRandom}
-          isGenerating={isGenerating}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+              Loading PIN generator...
+            </div>
+          }
+        >
+          <LazyPinGenerator
+            length={pinLength}
+            onLengthChange={setPinLength}
+            allowRepeats={allowRepeats}
+            onAllowRepeatsChange={setAllowRepeats}
+            onGenerate={generateRandom}
+            isGenerating={isGenerating}
+          />
+        </Suspense>
       )}
 
       {mode === "phone" && (
-        <PhoneGenerator
-          country={country}
-          onCountryChange={setCountry}
-          onGenerate={generateRandom}
-          isGenerating={isGenerating}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+              Loading phone generator...
+            </div>
+          }
+        >
+          <LazyPhoneGenerator
+            country={country}
+            onCountryChange={setCountry}
+            onGenerate={generateRandom}
+            isGenerating={isGenerating}
+          />
+        </Suspense>
       )}
 
       {mode === "list" && (
-        <ListGenerator
-          list={list}
-          onListChange={setList}
-          count={listCount}
-          onCountChange={setListCount}
-          onGenerate={generateRandom}
-          isGenerating={isGenerating}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+              Loading list generator...
+            </div>
+          }
+        >
+          <LazyListGenerator
+            list={list}
+            onListChange={setList}
+            count={listCount}
+            onCountChange={setListCount}
+            onGenerate={generateRandom}
+            isGenerating={isGenerating}
+          />
+        </Suspense>
       )}
 
       {mode === "lottery" && (
-        <LotteryGenerator
-          count={lotteryCount}
-          onCountChange={setLotteryCount}
-          max={lotteryMax}
-          onMaxChange={setLotteryMax}
-          onGenerate={generateRandom}
-          isGenerating={isGenerating}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+              Loading lottery generator...
+            </div>
+          }
+        >
+          <LazyLotteryGenerator
+            count={lotteryCount}
+            onCountChange={setLotteryCount}
+            max={lotteryMax}
+            onMaxChange={setLotteryMax}
+            onGenerate={generateRandom}
+            isGenerating={isGenerating}
+          />
+        </Suspense>
       )}
 
       {mode === "special" && (
-        <SpecialGenerator
-          type={specialType}
-          onTypeChange={setSpecialType}
-          min={specialMin}
-          onMinChange={setSpecialMin}
-          max={specialMax}
-          onMaxChange={setSpecialMax}
-          specialValue={specialValue}
-          onSpecialValueChange={setSpecialValue}
-          onGenerate={generateRandom}
-          isGenerating={isGenerating}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+              Loading special generator...
+            </div>
+          }
+        >
+          <LazySpecialGenerator
+            type={specialType}
+            onTypeChange={setSpecialType}
+            min={specialMin}
+            onMinChange={setSpecialMin}
+            max={specialMax}
+            onMaxChange={setSpecialMax}
+            specialValue={specialValue}
+            onSpecialValueChange={setSpecialValue}
+            onGenerate={generateRandom}
+            isGenerating={isGenerating}
+          />
+        </Suspense>
       )}
 
-      <History
-        history={history}
-        onClear={clearHistory}
-        onReuse={reuseHistoryItem}
-      />
+      <Suspense
+        fallback={
+          <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+            Loading history...
+          </div>
+        }
+      >
+        <LazyHistory
+          history={history}
+          onClear={clearHistory}
+          onReuse={reuseHistoryItem}
+        />
+      </Suspense>
 
       <div className="fixed bottom-6 right-6 md:hidden">
         <Button

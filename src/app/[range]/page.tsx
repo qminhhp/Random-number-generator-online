@@ -1,4 +1,4 @@
-import { RandomNumberGenerator } from "@/components/random-number-generator/random-number-generator";
+import dynamic from "next/dynamic";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSelector } from "@/components/language-selector";
 import { CommonRangesLinks } from "@/components/common-ranges-links";
@@ -6,6 +6,22 @@ import { MothersTeachingBanner } from "@/components/mothers-teaching-banner";
 import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+// Lazy load the RandomNumberGenerator component
+const RandomNumberGenerator = dynamic(
+  () =>
+    import("@/components/random-number-generator/random-number-generator").then(
+      (mod) => ({ default: mod.RandomNumberGenerator }),
+    ),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="min-h-[400px] flex items-center justify-center">
+        Loading generator...
+      </div>
+    ),
+  },
+);
 
 type Props = {
   params: { range: string };
