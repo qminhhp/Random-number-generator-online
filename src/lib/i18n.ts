@@ -112,7 +112,7 @@ export const translations: Translations = {
       "하나님께 기도한 후 버튼을 클릭하여 오늘의 실천 교훈을 받으세요",
     receiveTeaching: "오늘의 교훈 받기",
     prayingState: "기도 중...",
-    motherTeaching: "어머니의 교훈 번호",
+    motherTeaching: "어머니 교훈 중",
     godBlessYou:
       "감사합니다. 오늘은 어머니의 교훈 {0}번을 잘 실천하세요. 하나님의 축복이 함께하길 바랍니다.",
   },

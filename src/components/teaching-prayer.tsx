@@ -75,19 +75,31 @@ export function TeachingPrayer() {
                 {t("motherTeaching")} {selectedTeaching.id}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 italic mb-4">
-                "{selectedTeaching.teaching}"
+                "
+                {language === "ko" && selectedTeaching.ko
+                  ? selectedTeaching.ko.teaching
+                  : selectedTeaching.teaching}
+                "
               </p>
               <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
                 <p>{formatString(t("godBlessYou"), selectedTeaching.id)}</p>
               </div>
               <div className="flex justify-center mt-4">
                 <Link
-                  href={selectedTeaching.url}
+                  href={
+                    language === "ko" && selectedTeaching.ko
+                      ? selectedTeaching.ko.url
+                      : selectedTeaching.url
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:underline"
                 >
-                  <span>Read more about this teaching</span>
+                  <span>
+                    {language === "ko"
+                      ? "이 교훈에 대해 자세히 보기"
+                      : "Read more about this teaching"}
+                  </span>
                   <ExternalLink size={14} />
                 </Link>
               </div>

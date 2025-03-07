@@ -12,8 +12,10 @@ import { mothersTeachings } from "@/data/mothers-teachings";
 import { ExternalLink, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/language-context";
 
 export function MothersTeaching() {
+  const { language } = useLanguage();
   const [teaching, setTeaching] = useState(mothersTeachings[0]);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -47,10 +49,16 @@ export function MothersTeaching() {
           className={`min-h-24 flex flex-col justify-center transition-opacity duration-500 ${isAnimating ? "opacity-0" : "opacity-100"}`}
         >
           <h3 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">
-            {teaching.title}
+            {language === "ko" && teaching.ko
+              ? teaching.ko.title
+              : teaching.title}
           </h3>
           <p className="text-gray-700 dark:text-gray-300 italic">
-            "{teaching.teaching}"
+            "
+            {language === "ko" && teaching.ko
+              ? teaching.ko.teaching
+              : teaching.teaching}
+            "
           </p>
         </div>
         <Button
@@ -64,12 +72,20 @@ export function MothersTeaching() {
       </CardContent>
       <CardFooter className="bg-purple-50 dark:bg-purple-900/20 p-2 text-xs text-center">
         <Link
-          href="https://watv.org/category/faith-life/teachings-of-mother/"
+          href={
+            language === "ko"
+              ? "https://watv.org/ko/category/faith-life-ko/teachings-of-mother/"
+              : "https://watv.org/category/faith-life/teachings-of-mother/"
+          }
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center w-full text-purple-600 dark:text-purple-300 hover:underline"
         >
-          <span>More Teachings of Mother</span>
+          <span>
+            {language === "ko"
+              ? "어머니의 교훈 더 보기"
+              : "More Teachings of Mother"}
+          </span>
           <ExternalLink size={12} className="ml-1" />
         </Link>
       </CardFooter>

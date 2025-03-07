@@ -13,8 +13,10 @@ import { mothersTeachings } from "@/data/mothers-teachings";
 import { Sparkles, ExternalLink } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/language-context";
 
 export function TeachingWheel() {
+  const { language } = useLanguage();
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [selectedTeaching, setSelectedTeaching] = useState<
@@ -97,7 +99,13 @@ export function TeachingWheel() {
         className="gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-2 rounded-full shadow-md"
       >
         <Sparkles size={16} />
-        {isSpinning ? "Praying..." : "Pray for Today's Teaching"}
+        {isSpinning
+          ? language === "ko"
+            ? "기도 중..."
+            : "Praying..."
+          : language === "ko"
+            ? "오늘의 교훈을 위해 기도하기"
+            : "Pray for Today's Teaching"}
       </Button>
 
       {/* Result Dialog */}
@@ -105,29 +113,47 @@ export function TeachingWheel() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Heavenly Mother's Blessing
+              {language === "ko"
+                ? "하늘 어머니의 축복"
+                : "Heavenly Mother's Blessing"}
             </DialogTitle>
             <DialogDescription className="text-center">
-              God has answered your prayer with this teaching
+              {language === "ko"
+                ? "하나님께서 이 교훈으로 당신의 기도에 응답하셨습니다"
+                : "God has answered your prayer with this teaching"}
             </DialogDescription>
           </DialogHeader>
 
           {selectedTeaching && (
             <div className="py-4">
               <h3 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 text-lg">
-                Mother's Teaching No. {selectedTeaching.id}
+                {language === "ko"
+                  ? `어머니 교훈 중 ${selectedTeaching.id}번째 교훈`
+                  : `Mother's Teaching No. ${selectedTeaching.id}`}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 italic mb-4">
-                "{selectedTeaching.teaching}"
+                "
+                {language === "ko" && selectedTeaching.ko
+                  ? selectedTeaching.ko.teaching
+                  : selectedTeaching.teaching}
+                "
               </p>
               <div className="flex justify-center">
                 <Link
-                  href={selectedTeaching.url}
+                  href={
+                    language === "ko" && selectedTeaching.ko
+                      ? selectedTeaching.ko.url
+                      : selectedTeaching.url
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:underline"
                 >
-                  <span>Read more about this teaching</span>
+                  <span>
+                    {language === "ko"
+                      ? "이 교훈에 대해 자세히 보기"
+                      : "Read more about this teaching"}
+                  </span>
                   <ExternalLink size={14} />
                 </Link>
               </div>
@@ -139,7 +165,7 @@ export function TeachingWheel() {
               onClick={() => setShowDialog(false)}
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
             >
-              Close
+              {language === "ko" ? "닫기" : "Close"}
             </Button>
           </DialogFooter>
         </DialogContent>
