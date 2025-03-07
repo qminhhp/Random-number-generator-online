@@ -1,7 +1,10 @@
 import { TempoInit } from "@/components/tempo-init";
+import { LanguageSelector } from "@/components/language-selector";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
+import Link from "next/link";
 import { Providers } from "./providers";
 import "./globals.css";
 

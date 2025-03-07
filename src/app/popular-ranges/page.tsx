@@ -3,6 +3,7 @@ import {
   CategoryLinks,
 } from "@/components/common-ranges-links";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { LanguageSelector } from "@/components/language-selector";
 import { MothersTeachingBanner } from "@/components/mothers-teaching-banner";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -86,14 +87,17 @@ export default function PopularRangesPage() {
               EasyRandomNumbers
             </h1>
           </Link>
-          <ThemeSwitcher />
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <ThemeSwitcher />
+          </div>
         </div>
       </header>
 
       <main className="container py-6 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <MothersTeachingBanner />
+            <MothersTeachingBanner lang="en" />
           </div>
 
           <div className="mb-8 text-center">
@@ -109,7 +113,7 @@ export default function PopularRangesPage() {
 
           <div className="mb-8">
             <h3 className="text-xl font-semibold mb-4">Browse by Category</h3>
-            <CategoryLinks className="mb-6" />
+            <CategoryLinks className="mb-6" lang="en" />
 
             <div className="space-y-8">
               {categories.map((category) => (
@@ -123,7 +127,11 @@ export default function PopularRangesPage() {
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                     {category.description}
                   </p>
-                  <CommonRangesLinks category={category.id} limit={12} />
+                  <CommonRangesLinks
+                    category={category.id}
+                    limit={12}
+                    lang="en"
+                  />
                   <div className="mt-2 text-right">
                     <Link
                       href={`/category/${category.id}`}

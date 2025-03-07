@@ -10,11 +10,14 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { mothersTeachings } from "@/data/mothers-teachings";
+import { useLanguage } from "@/contexts/language-context";
+import { formatString } from "@/lib/i18n";
 import { Sparkles, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 
 export function TeachingPrayer() {
+  const { t } = useLanguage();
   const [isPraying, setIsPraying] = useState(false);
   const [selectedTeaching, setSelectedTeaching] = useState<
     (typeof mothersTeachings)[0] | null
@@ -41,8 +44,7 @@ export function TeachingPrayer() {
     <div className="flex flex-col items-center justify-center space-y-6 py-8">
       <div className="text-center max-w-md mx-auto mb-4">
         <p className="text-gray-700 dark:text-gray-300 italic">
-          "Please pray to God and then click the button to receive today's
-          practical teaching"
+          {t("prayerPrompt")}
         </p>
       </div>
 
@@ -52,7 +54,7 @@ export function TeachingPrayer() {
         className="gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-2 rounded-full shadow-md"
       >
         <Sparkles size={16} />
-        {isPraying ? "Praying..." : "Receive Today's Teaching"}
+        {isPraying ? t("prayingState") : t("receiveTeaching")}
       </Button>
 
       {/* Result Dialog */}
@@ -70,16 +72,13 @@ export function TeachingPrayer() {
           {selectedTeaching && (
             <div className="py-4">
               <h3 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 text-lg">
-                Mother's Teaching No. {selectedTeaching.id}
+                {t("motherTeaching")} {selectedTeaching.id}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 italic mb-4">
                 "{selectedTeaching.teaching}"
               </p>
               <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
-                <p>
-                  Thank you. Today, please practice Mother's Teaching No.{" "}
-                  {selectedTeaching.id} well. God bless you.
-                </p>
+                <p>{formatString(t("godBlessYou"), selectedTeaching.id)}</p>
               </div>
               <div className="flex justify-center mt-4">
                 <Link

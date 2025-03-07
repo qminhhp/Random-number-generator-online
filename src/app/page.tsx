@@ -1,10 +1,11 @@
 import { RandomNumberGenerator } from "@/components/random-number-generator/random-number-generator";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { LanguageSelector } from "@/components/language-selector";
 import { CommonRangesLinks } from "@/components/common-ranges-links";
 import { MothersTeachingBanner } from "@/components/mothers-teaching-banner";
 import Link from "next/link";
 
-export default function Page() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 pb-24">
       <header className="sticky top-0 z-10 border-b bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-sm">
@@ -24,6 +25,7 @@ export default function Page() {
             >
               Popular Ranges
             </Link>
+            <LanguageSelector />
             <ThemeSwitcher />
           </div>
         </div>
@@ -42,7 +44,7 @@ export default function Page() {
           <RandomNumberGenerator />
 
           <div className="mt-8">
-            <MothersTeachingBanner />
+            <MothersTeachingBanner lang="en" />
           </div>
 
           <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
@@ -57,7 +59,7 @@ export default function Page() {
                 View All →
               </Link>
             </div>
-            <CommonRangesLinks limit={12} />
+            <CommonRangesLinks limit={12} lang="en" />
           </div>
 
           <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">

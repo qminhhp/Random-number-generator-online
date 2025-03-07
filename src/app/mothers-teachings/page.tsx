@@ -1,4 +1,5 @@
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { LanguageSelector } from "@/components/language-selector";
 import { mothersTeachings } from "@/data/mothers-teachings";
 import { TeachingPrayer } from "@/components/teaching-prayer";
 import Link from "next/link";
@@ -23,7 +24,10 @@ export default function MothersTeachingsPage() {
               EasyRandomNumbers
             </h1>
           </Link>
-          <ThemeSwitcher />
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <ThemeSwitcher />
+          </div>
         </div>
       </header>
 

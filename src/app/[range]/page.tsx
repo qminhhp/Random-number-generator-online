@@ -1,5 +1,6 @@
 import { RandomNumberGenerator } from "@/components/random-number-generator/random-number-generator";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { LanguageSelector } from "@/components/language-selector";
 import { CommonRangesLinks } from "@/components/common-ranges-links";
 import { MothersTeachingBanner } from "@/components/mothers-teaching-banner";
 import Link from "next/link";
@@ -63,6 +64,7 @@ export default function RangePage({ params }: Props) {
             >
               Popular Ranges
             </Link>
+            <LanguageSelector />
             <ThemeSwitcher />
           </div>
         </div>
@@ -80,7 +82,7 @@ export default function RangePage({ params }: Props) {
           <RandomNumberGenerator initialMin={min} initialMax={max} />
 
           <div className="mt-8">
-            <MothersTeachingBanner />
+            <MothersTeachingBanner lang="en" />
           </div>
 
           <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
@@ -95,7 +97,7 @@ export default function RangePage({ params }: Props) {
                 View All →
               </Link>
             </div>
-            <CommonRangesLinks limit={8} />
+            <CommonRangesLinks limit={8} lang="en" />
           </div>
 
           <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">

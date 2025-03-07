@@ -4,6 +4,7 @@ import {
   commonRanges,
 } from "@/components/common-ranges-links";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { LanguageSelector } from "@/components/language-selector";
 import { MothersTeachingBanner } from "@/components/mothers-teaching-banner";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -88,7 +89,10 @@ export default function CategoryPage({ params }: Props) {
               EasyRandomNumbers
             </h1>
           </Link>
-          <ThemeSwitcher />
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <ThemeSwitcher />
+          </div>
         </div>
       </header>
 
@@ -113,21 +117,21 @@ export default function CategoryPage({ params }: Props) {
           </div>
 
           <div className="mb-8">
-            <MothersTeachingBanner />
+            <MothersTeachingBanner lang="en" />
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
             <h3 className="text-lg font-semibold mb-4">
               All {categoryName} Ranges
             </h3>
-            <CommonRangesLinks category={category} limit={100} />
+            <CommonRangesLinks category={category} limit={100} lang="en" />
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
             <h3 className="text-lg font-semibold mb-4">
               Browse Other Categories
             </h3>
-            <CategoryLinks />
+            <CategoryLinks lang="en" />
           </div>
 
           <div className="mt-8 text-center">
