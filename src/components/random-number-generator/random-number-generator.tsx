@@ -1,22 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Copy, Share2, Sparkles } from "lucide-react";
-import { useEffect, useState, lazy, Suspense } from "react";
-import {
-  GeneratorMode,
-  GeneratorModeSelector,
-} from "./generator-mode-selector";
-import { NumberDisplay } from "./number-display";
-import { QuickAccessButtons } from "./quick-access-buttons";
-import { RangeInputs } from "./range-inputs";
+import { useEffect, useState, Suspense } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+import { useLanguage } from "@/contexts/language-context";
+import { TranslatedComponents } from "./translated-components";
 import type { HistoryItem } from "./history";
 import type { SpecialType } from "./special-generator";
+import type { GeneratorMode } from "./generator-mode-selector";
 
 // Import lazy-loaded components
 import {
@@ -40,6 +33,7 @@ export function RandomNumberGenerator({
   initialMax,
 }: RandomNumberGeneratorProps) {
   const router = useRouter();
+  const { t } = useLanguage();
 
   // Standard generator state
   const [min, setMin] = useState(initialMin || 1);
@@ -336,8 +330,8 @@ export function RandomNumberGenerator({
 
     navigator.clipboard.writeText(textToCopy);
     toast({
-      title: "Copied to clipboard!",
-      description: "Your random result has been copied.",
+      title: t("copied"),
+      description: t("copiedDesc"),
       duration: 2000,
     });
   };
@@ -429,221 +423,146 @@ export function RandomNumberGenerator({
   }, []);
 
   return (
-    <div className="mx-auto flex max-w-md flex-col space-y-4 p-4">
-      <GeneratorModeSelector mode={mode} onModeChange={setMode} />
-
-      <NumberDisplay
-        value={result}
+    <>
+      <TranslatedComponents
+        mode={mode}
+        result={result}
         format={format}
         isGenerating={isGenerating}
-      />
-
-      <div className="flex gap-2">
-        <Button
-          className="flex-1 gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md"
-          onClick={generateRandom}
-          disabled={isGenerating}
-        >
-          <Sparkles size={18} />
-          Generate
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={copyToClipboard}
-          disabled={result === null}
-          title="Copy to clipboard"
-          className="border-blue-200 dark:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900"
-        >
-          <Copy size={18} />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={shareResult}
-          disabled={result === null}
-          title="Share result"
-          className="border-purple-200 dark:border-purple-800 hover:bg-purple-50 dark:hover:bg-purple-900"
-        >
-          <Share2 size={18} />
-        </Button>
-      </div>
-
-      {/* Mode-specific controls */}
-      {mode === "standard" && (
-        <>
-          <Card className="border-blue-200 dark:border-blue-800 shadow-sm">
-            <CardContent className="space-y-4 p-4">
-              <QuickAccessButtons onSelectRange={handleRangeSelect} />
-
-              <RangeInputs
-                min={min}
-                max={max}
-                step={step}
-                onMinChange={setMin}
-                onMaxChange={setMax}
-                onStepChange={setStep}
-              />
-            </CardContent>
-          </Card>
-
+        min={min}
+        max={max}
+        step={step}
+        count={count}
+        history={history}
+        onModeChange={setMode}
+        onGenerate={generateRandom}
+        onCopyToClipboard={copyToClipboard}
+        onShareResult={shareResult}
+        onMinChange={setMin}
+        onMaxChange={setMax}
+        onStepChange={setStep}
+        onCountChange={setCount}
+        onFormatChange={setFormat}
+        onClearHistory={clearHistory}
+        onReuseHistoryItem={reuseHistoryItem}
+        onRangeSelect={handleRangeSelect}
+      >
+        {mode === "digits" && (
           <Suspense
             fallback={
               <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-                Loading options...
+                {t("loadingGenerator")}
               </div>
             }
           >
-            <LazyAdvancedOptions
-              count={count}
-              onCountChange={setCount}
-              format={format}
-              onFormatChange={setFormat}
+            <LazyDigitGenerator
+              digits={digits}
+              onDigitsChange={setDigits}
+              onGenerate={generateRandom}
+              isGenerating={isGenerating}
             />
           </Suspense>
-        </>
-      )}
+        )}
 
-      {mode === "digits" && (
-        <Suspense
-          fallback={
-            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-              Loading digit generator...
-            </div>
-          }
-        >
-          <LazyDigitGenerator
-            digits={digits}
-            onDigitsChange={setDigits}
-            onGenerate={generateRandom}
-            isGenerating={isGenerating}
-          />
-        </Suspense>
-      )}
+        {mode === "pin" && (
+          <Suspense
+            fallback={
+              <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+                {t("loadingGenerator")}
+              </div>
+            }
+          >
+            <LazyPinGenerator
+              length={pinLength}
+              onLengthChange={setPinLength}
+              allowRepeats={allowRepeats}
+              onAllowRepeatsChange={setAllowRepeats}
+              onGenerate={generateRandom}
+              isGenerating={isGenerating}
+            />
+          </Suspense>
+        )}
 
-      {mode === "pin" && (
-        <Suspense
-          fallback={
-            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-              Loading PIN generator...
-            </div>
-          }
-        >
-          <LazyPinGenerator
-            length={pinLength}
-            onLengthChange={setPinLength}
-            allowRepeats={allowRepeats}
-            onAllowRepeatsChange={setAllowRepeats}
-            onGenerate={generateRandom}
-            isGenerating={isGenerating}
-          />
-        </Suspense>
-      )}
+        {mode === "phone" && (
+          <Suspense
+            fallback={
+              <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+                {t("loadingGenerator")}
+              </div>
+            }
+          >
+            <LazyPhoneGenerator
+              country={country}
+              onCountryChange={setCountry}
+              onGenerate={generateRandom}
+              isGenerating={isGenerating}
+            />
+          </Suspense>
+        )}
 
-      {mode === "phone" && (
-        <Suspense
-          fallback={
-            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-              Loading phone generator...
-            </div>
-          }
-        >
-          <LazyPhoneGenerator
-            country={country}
-            onCountryChange={setCountry}
-            onGenerate={generateRandom}
-            isGenerating={isGenerating}
-          />
-        </Suspense>
-      )}
+        {mode === "list" && (
+          <Suspense
+            fallback={
+              <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+                {t("loadingGenerator")}
+              </div>
+            }
+          >
+            <LazyListGenerator
+              list={list}
+              onListChange={setList}
+              count={listCount}
+              onCountChange={setListCount}
+              onGenerate={generateRandom}
+              isGenerating={isGenerating}
+            />
+          </Suspense>
+        )}
 
-      {mode === "list" && (
-        <Suspense
-          fallback={
-            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-              Loading list generator...
-            </div>
-          }
-        >
-          <LazyListGenerator
-            list={list}
-            onListChange={setList}
-            count={listCount}
-            onCountChange={setListCount}
-            onGenerate={generateRandom}
-            isGenerating={isGenerating}
-          />
-        </Suspense>
-      )}
+        {mode === "lottery" && (
+          <Suspense
+            fallback={
+              <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+                {t("loadingGenerator")}
+              </div>
+            }
+          >
+            <LazyLotteryGenerator
+              count={lotteryCount}
+              onCountChange={setLotteryCount}
+              max={lotteryMax}
+              onMaxChange={setLotteryMax}
+              onGenerate={generateRandom}
+              isGenerating={isGenerating}
+            />
+          </Suspense>
+        )}
 
-      {mode === "lottery" && (
-        <Suspense
-          fallback={
-            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-              Loading lottery generator...
-            </div>
-          }
-        >
-          <LazyLotteryGenerator
-            count={lotteryCount}
-            onCountChange={setLotteryCount}
-            max={lotteryMax}
-            onMaxChange={setLotteryMax}
-            onGenerate={generateRandom}
-            isGenerating={isGenerating}
-          />
-        </Suspense>
-      )}
-
-      {mode === "special" && (
-        <Suspense
-          fallback={
-            <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-              Loading special generator...
-            </div>
-          }
-        >
-          <LazySpecialGenerator
-            type={specialType}
-            onTypeChange={setSpecialType}
-            min={specialMin}
-            onMinChange={setSpecialMin}
-            max={specialMax}
-            onMaxChange={setSpecialMax}
-            specialValue={specialValue}
-            onSpecialValueChange={setSpecialValue}
-            onGenerate={generateRandom}
-            isGenerating={isGenerating}
-          />
-        </Suspense>
-      )}
-
-      <Suspense
-        fallback={
-          <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
-            Loading history...
-          </div>
-        }
-      >
-        <LazyHistory
-          history={history}
-          onClear={clearHistory}
-          onReuse={reuseHistoryItem}
-        />
-      </Suspense>
-
-      <div className="fixed bottom-6 right-6 md:hidden">
-        <Button
-          size="icon"
-          className="h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-          onClick={generateRandom}
-          disabled={isGenerating}
-        >
-          <Sparkles size={24} />
-        </Button>
-      </div>
+        {mode === "special" && (
+          <Suspense
+            fallback={
+              <div className="min-h-20 rounded-md border border-muted p-4 flex items-center justify-center">
+                {t("loadingGenerator")}
+              </div>
+            }
+          >
+            <LazySpecialGenerator
+              type={specialType}
+              onTypeChange={setSpecialType}
+              min={specialMin}
+              onMinChange={setSpecialMin}
+              max={specialMax}
+              onMaxChange={setSpecialMax}
+              specialValue={specialValue}
+              onSpecialValueChange={setSpecialValue}
+              onGenerate={generateRandom}
+              isGenerating={isGenerating}
+            />
+          </Suspense>
+        )}
+      </TranslatedComponents>
 
       <Toaster />
-    </div>
+    </>
   );
 }

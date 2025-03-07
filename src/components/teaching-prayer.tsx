@@ -17,7 +17,7 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/language-context";
 
 export function TeachingPrayer() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [isPraying, setIsPraying] = useState(false);
   const [selectedTeaching, setSelectedTeaching] = useState<
     (typeof mothersTeachings)[0] | null
@@ -44,8 +44,7 @@ export function TeachingPrayer() {
     <div className="flex flex-col items-center justify-center space-y-6 py-8">
       <div className="text-center max-w-md mx-auto mb-4">
         <p className="text-gray-700 dark:text-gray-300 italic">
-          Please pray to God and then click the button to receive today's
-          practical teaching
+          {t("prayMessage")}
         </p>
       </div>
 
@@ -55,7 +54,7 @@ export function TeachingPrayer() {
         className="gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-2 rounded-full shadow-md"
       >
         <Sparkles size={16} />
-        {isPraying ? "Praying..." : "Receive Today's Teaching"}
+        {isPraying ? t("praying") : t("receiveTeaching")}
       </Button>
 
       {/* Result Dialog */}
@@ -63,39 +62,44 @@ export function TeachingPrayer() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Heavenly Mother's Blessing
+              {t("mothersBlessing")}
             </DialogTitle>
             <DialogDescription className="text-center">
-              God has answered your prayer with this teaching
+              {t("godAnswered")}
             </DialogDescription>
           </DialogHeader>
 
           {selectedTeaching && (
             <div className="py-4">
               <h3 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 text-lg">
-                Mother's Teaching No. {selectedTeaching.id}
+                {t("teachingNumber", selectedTeaching.id)}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 italic mb-4">
                 "
-                {language === "ko" && selectedTeaching.ko
-                  ? selectedTeaching.ko.teaching
-                  : selectedTeaching.teaching}
+                {language === "vi" && selectedTeaching.vi
+                  ? selectedTeaching.vi.teaching
+                  : language === "ko" && selectedTeaching.ko
+                    ? selectedTeaching.ko.teaching
+                    : selectedTeaching.teaching}
                 "
               </p>
               <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
-                <p>
-                  Thank you. Today, please practice Mother's Teaching No.{" "}
-                  {selectedTeaching.id} well. God bless you.
-                </p>
+                <p>{t("thankYouMessage", selectedTeaching.id)}</p>
               </div>
               <div className="flex justify-center mt-4">
                 <Link
-                  href={selectedTeaching.url}
+                  href={
+                    language === "vi" && selectedTeaching.vi
+                      ? selectedTeaching.vi.url
+                      : language === "ko" && selectedTeaching.ko
+                        ? selectedTeaching.ko.url
+                        : selectedTeaching.url
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:underline"
                 >
-                  <span>Read more about this teaching</span>
+                  <span>{t("readMoreAbout")}</span>
                   <ExternalLink size={14} />
                 </Link>
               </div>
@@ -107,7 +111,7 @@ export function TeachingPrayer() {
               onClick={() => setShowDialog(false)}
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
             >
-              Close
+              {t("close")}
             </Button>
           </DialogFooter>
         </DialogContent>

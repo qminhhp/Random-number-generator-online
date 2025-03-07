@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/contexts/language-context";
 
 interface CommonRangeLink {
   min: number;
@@ -139,6 +142,8 @@ export function CommonRangesLinks({
   limit = 20,
   className = "",
 }: CommonRangesLinksProps) {
+  const { language } = useLanguage();
+
   // Filter by category if provided
   const filteredRanges = category
     ? commonRanges.filter((range) => range.category === category)
@@ -147,6 +152,9 @@ export function CommonRangesLinks({
   // Limit the number of links shown
   const limitedRanges = filteredRanges.slice(0, limit);
 
+  // Determine URL prefix based on language
+  const urlPrefix = language === "vi" ? "/vi" : "";
+
   return (
     <div
       className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 ${className}`}
@@ -154,7 +162,7 @@ export function CommonRangesLinks({
       {limitedRanges.map((range, index) => (
         <Link
           key={`${range.min}-${range.max}-${index}`}
-          href={`/${range.min}-${range.max}`}
+          href={`${urlPrefix}/${range.min}-${range.max}`}
           className="text-sm px-3 py-2 rounded-md bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 transition-colors text-blue-700 dark:text-blue-300 no-underline text-center truncate"
           title={
             range.label || `Random number between ${range.min} and ${range.max}`
@@ -172,17 +180,22 @@ interface CategoryLinksProps {
 }
 
 export function CategoryLinks({ className = "" }: CategoryLinksProps) {
+  const { language } = useLanguage();
+
   // Get unique categories
   const categories = Array.from(
     new Set(commonRanges.map((range) => range.category)),
   );
+
+  // Determine URL prefix based on language
+  const urlPrefix = language === "vi" ? "/vi" : "";
 
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
       {categories.map((category) => (
         <Link
           key={category}
-          href={`/category/${category}`}
+          href={`${urlPrefix}/category/${category}`}
           className="text-sm px-3 py-2 rounded-md bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/30 dark:hover:bg-purple-800/50 transition-colors text-purple-700 dark:text-purple-300 no-underline capitalize"
         >
           {category}

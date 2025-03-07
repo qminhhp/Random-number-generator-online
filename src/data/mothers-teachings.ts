@@ -11,6 +11,12 @@ export const mothersTeachings = [
         "하나님께서 늘 사랑을 주신 것처럼 주는 사랑이 받는 사랑보다 더 복이 있습니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-1",
     },
+    vi: {
+      title: "Tình yêu thương",
+      teaching:
+        "Như Ðức Chúa Trời luôn luôn ban sự yêu thương, người yêu thương được phước hơn người nhận yêu thương.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-1",
+    },
   },
   {
     id: 2,
@@ -21,6 +27,12 @@ export const mothersTeachings = [
       title: "영광",
       teaching: "하나님께 영광을 돌리면 그 영광은 결국 자신의 것이 됩니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-2",
+    },
+    vi: {
+      title: "Vinh hiển",
+      teaching:
+        "Khi dâng vinh hiển lên Ðức Chúa Trời thì sự vinh hiển ấy được trở lại và thuộc về mình.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-2",
     },
   },
   {
@@ -33,6 +45,12 @@ export const mothersTeachings = [
       title: "온전한 사랑",
       teaching: "아름답게 보는 마음은 미움이 없고 온전한 사랑을 이루게 합니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-3",
+    },
+    vi: {
+      title: "Tình yêu thương trọn vẹn",
+      teaching:
+        "Tấm lòng đẹp không chứa sự ghen ghét và luôn đạt được tình yêu thương trọn vẹn.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-3",
     },
   },
   {
@@ -47,6 +65,12 @@ export const mothersTeachings = [
         "아브라함이 조카 롯에게 좋은 것을 양보했을 때 더 좋은 것으로 축복을 받았듯이 우리들도 형제들에게 좋은 것을 양보하면 더 좋은 축복을 받게 됩니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-4",
     },
+    vi: {
+      title: "Nhường nhịn",
+      teaching:
+        "Giống như Ápraham được nhận phước lành tốt hơn khi nhường cho người cháu là Lót cái tốt đẹp, chúng ta cũng sẽ nhận phước lành tốt hơn khi nhường cho anh em cái tốt đẹp.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-4",
+    },
   },
   {
     id: 5,
@@ -58,6 +82,11 @@ export const mothersTeachings = [
       title: "높은 마음",
       teaching: "높은 마음이란 섭섭하게 느끼는 마음입니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-5",
+    },
+    vi: {
+      title: "Kiêu ngạo",
+      teaching: "Lòng hờn dỗi là lòng kiêu ngạo.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-5",
     },
   },
   {
@@ -72,6 +101,12 @@ export const mothersTeachings = [
         "다른 사람들이 일하지 않는다고 불평하지 말고 자신의 할 일에만 충성되게 합시다. 주인 된 마음으로 일하면 힘들지 않고 즐거운 마음으로 일할 수 있습니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-6",
     },
+    vi: {
+      title: "Công việc trung thành",
+      teaching:
+        "Ðừng phàn nàn người khác không làm, hãy chú tâm vào công việc của chính mình một cách trung thành. Làm việc với tấm lòng người chủ sẽ không mệt nhọc và được hớn hở trong khi làm việc.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-6",
+    },
   },
   {
     id: 7,
@@ -85,6 +120,12 @@ export const mothersTeachings = [
         "불만이 가득 차면 교만이 생깁니다. 늘 감사하는 마음으로 하나님을 섬기면 불만과 교만이 없어지고 겸손한 마음을 갖게 됩니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-7",
     },
+    vi: {
+      title: "Lòng biết ơn",
+      teaching:
+        "Đầy bất mãn sinh ra lòng kiêu ngạo. Luôn luôn lấy lòng cảm tạ phụng sự Đức Chúa Trời thì bất mãn và kiêu ngạo sẽ bị biến mất, thay vào đó là lòng khiêm tốn.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-7",
+    },
   },
   {
     id: 8,
@@ -96,6 +137,11 @@ export const mothersTeachings = [
       title: "칭찬",
       teaching: "형제자매를 칭찬하면 내게 칭찬이 돌아옵니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-8",
+    },
+    vi: {
+      title: "Lời khen",
+      teaching: "Khi khen anh em thì sự khen trở về mình.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-8",
     },
   },
   {
@@ -110,6 +156,12 @@ export const mothersTeachings = [
         "바다가 모든 더러운 것을 받아 정화시키듯이 모든 형제자매들의 허물까지도 감싸줄 수 있는 바다같이 넓은 마음이 진정 아름다운 마음입니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-9",
     },
+    vi: {
+      title: "Bao dung lỗi lầm",
+      teaching:
+        "Giống như biển cả làm cho tinh sạch mọi sự dơ dáy chảy vào mình, tấm lòng rộng lớn như biển cả bao la khoan dung mọi sự lỗi lầm của anh chị em mới thật là tấm lòng đẹp.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-9",
+    },
   },
   {
     id: 10,
@@ -123,6 +175,12 @@ export const mothersTeachings = [
         "어린양의 인도를 받기를 원하는 사람은 어린양보다 더 작은 양이 되어야 합니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-10",
     },
+    vi: {
+      title: "Khiêm tốn",
+      teaching:
+        "Người nào muốn được Chiên Con dẫn dắt, thì phải trở nên chiên nhỏ hơn Chiên Con.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-10",
+    },
   },
   {
     id: 11,
@@ -134,6 +192,12 @@ export const mothersTeachings = [
       title: "희생",
       teaching: "희생은 큰 그릇이 되기 위해 요구되는 과정입니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-11",
+    },
+    vi: {
+      title: "Hy sinh",
+      teaching:
+        "Hy sinh là quá trình được đòi hỏi để chúng ta trở thành chén lớn.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-11",
     },
   },
   {
@@ -148,6 +212,12 @@ export const mothersTeachings = [
         "하나님은 섬기러 이 땅에 오셨습니다. 섬김받기를 원하지 않고 서로 섬기는 마음이 하나님께서 기뻐하시는 마음입니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-12",
     },
+    vi: {
+      title: "Hầu việc",
+      teaching:
+        "Đức Chúa Trời đến thế gian để hầu việc. Tấm lòng hầu việc lẫn nhau chớ không muốn được hầu việc là tấm lòng Đức Chúa Trời đẹp ý.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-12",
+    },
   },
   {
     id: 13,
@@ -160,6 +230,12 @@ export const mothersTeachings = [
       teaching:
         "오늘의 고통을 참고 인내해야 함은 하늘나라가 내게 있기 때문입니다.",
       url: "https://watv.org/ko/faith_life/teachings-of-mother-13",
+    },
+    vi: {
+      title: "Kiên nhẫn",
+      teaching:
+        "Sở dĩ kiên nhẫn và nhịn nhục gian nan hôm nay là vì đối với tôi có Nước Thiên Ðàng.",
+      url: "https://watv.org/vi/faith_life/teachings-of-mother-13",
     },
   },
 ];

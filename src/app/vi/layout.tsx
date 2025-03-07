@@ -2,29 +2,29 @@ import { TempoInit } from "@/components/tempo-init";
 import { LanguageSelector } from "@/components/language-selector";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
-import { Providers } from "./providers";
-import "./globals.css";
+import { Providers } from "../providers";
+import "../globals.css";
 
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
+  subsets: ["latin", "vietnamese"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "EasyRandomNumbers - Fun & Free Random Number Generator",
+  title: "EasyRandomNumbers - Trình tạo số ngẫu nhiên miễn phí và thú vị",
   description:
-    "Generate random numbers instantly! Perfect for games, lotteries, decisions, and more. Fast, free, and fun to use.",
+    "Tạo số ngẫu nhiên ngay lập tức! Hoàn hảo cho trò chơi, xổ số, quyết định và nhiều hơn nữa. Nhanh chóng, miễn phí và thú vị để sử dụng.",
   keywords:
-    "random number generator, lottery numbers, random picker, dice roller, random decision maker",
+    "trình tạo số ngẫu nhiên, số xổ số, chọn ngẫu nhiên, tung xúc xắc, công cụ quyết định ngẫu nhiên",
   authors: [{ name: "EasyRandomNumbers" }],
   metadataBase: new URL("https://easyrandomnumbers.com"),
   alternates: {
-    canonical: "/",
+    canonical: "/vi",
     languages: {
       en: "/",
       vi: "/vi",
@@ -41,28 +41,28 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "EasyRandomNumbers - Fun & Free Random Number Generator",
+    title: "EasyRandomNumbers - Trình tạo số ngẫu nhiên miễn phí và thú vị",
     description:
-      "Generate random numbers instantly! Perfect for games, lotteries, decisions, and more.",
-    url: "https://easyrandomnumbers.com",
+      "Tạo số ngẫu nhiên ngay lập tức! Hoàn hảo cho trò chơi, xổ số, quyết định và nhiều hơn nữa.",
+    url: "https://easyrandomnumbers.com/vi",
     siteName: "EasyRandomNumbers",
-    locale: "en_US",
+    locale: "vi_VN",
     type: "website",
     images: [
       {
-        url: "https://easyrandomnumbers.com/og-image.png",
+        url: "https://easyrandomnumbers.com/og-image-vi.png",
         width: 1200,
         height: 630,
-        alt: "EasyRandomNumbers - Fun & Free Random Number Generator",
+        alt: "EasyRandomNumbers - Trình tạo số ngẫu nhiên miễn phí và thú vị",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EasyRandomNumbers - Fun & Free Random Number Generator",
+    title: "EasyRandomNumbers - Trình tạo số ngẫu nhiên miễn phí và thú vị",
     description:
-      "Generate random numbers instantly! Perfect for games, lotteries, decisions, and more.",
-    images: ["https://easyrandomnumbers.com/twitter-image.png"],
+      "Tạo số ngẫu nhiên ngay lập tức! Hoàn hảo cho trò chơi, xổ số, quyết định và nhiều hơn nữa.",
+    images: ["https://easyrandomnumbers.com/twitter-image-vi.png"],
   },
 };
 
@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="vi" suppressHydrationWarning>
       <head>
         <Script src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js" />
         <meta
@@ -84,7 +84,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link
           rel="preload"
-          href="/fonts/poppins-latin-400-normal.woff2"
+          href="/fonts/roboto-vietnamese-400-normal.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -105,8 +105,8 @@ export default function RootLayout({
           href="https://easyrandomnumbers.com/"
         />
       </head>
-      <body className={poppins.className}>
-        <Providers>
+      <body className={roboto.className}>
+        <Providers initialLanguage="vi">
           {children}
           <TempoInit />
           <GoogleAnalytics gaId="G-XXXXXXXXXX" />

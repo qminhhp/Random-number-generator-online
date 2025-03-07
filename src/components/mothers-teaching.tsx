@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/language-context";
 
 export function MothersTeaching() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [teaching, setTeaching] = useState(mothersTeachings[0]);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -38,7 +38,7 @@ export function MothersTeaching() {
     <Card className="border-purple-200 dark:border-purple-800 shadow-sm overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/40 dark:to-blue-900/40 pb-2 pt-4">
         <CardTitle className="text-lg flex justify-between items-center">
-          <span>Heavenly Mother's Teaching</span>
+          <span>{t("mothersTeachings")}</span>
           <span className="text-sm bg-white dark:bg-gray-800 px-2 py-1 rounded-full">
             #{teaching.id}
           </span>
@@ -49,15 +49,19 @@ export function MothersTeaching() {
           className={`min-h-24 flex flex-col justify-center transition-opacity duration-500 ${isAnimating ? "opacity-0" : "opacity-100"}`}
         >
           <h3 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">
-            {language === "ko" && teaching.ko
-              ? teaching.ko.title
-              : teaching.title}
+            {language === "vi" && teaching.vi
+              ? teaching.vi.title
+              : language === "ko" && teaching.ko
+                ? teaching.ko.title
+                : teaching.title}
           </h3>
           <p className="text-gray-700 dark:text-gray-300 italic">
             "
-            {language === "ko" && teaching.ko
-              ? teaching.ko.teaching
-              : teaching.teaching}
+            {language === "vi" && teaching.vi
+              ? teaching.vi.teaching
+              : language === "ko" && teaching.ko
+                ? teaching.ko.teaching
+                : teaching.teaching}
             "
           </p>
         </div>
@@ -67,25 +71,23 @@ export function MothersTeaching() {
           disabled={isAnimating}
         >
           <Sparkles size={16} />
-          Receive New Teaching
+          {t("receiveTeaching")}
         </Button>
       </CardContent>
       <CardFooter className="bg-purple-50 dark:bg-purple-900/20 p-2 text-xs text-center">
         <Link
           href={
-            language === "ko"
-              ? "https://watv.org/ko/category/faith-life-ko/teachings-of-mother/"
-              : "https://watv.org/category/faith-life/teachings-of-mother/"
+            language === "vi"
+              ? "https://watv.org/vi/category/faith-life-es/teachings-of-mother/"
+              : language === "ko"
+                ? "https://watv.org/ko/category/faith-life-ko/teachings-of-mother/"
+                : "https://watv.org/category/faith-life/teachings-of-mother/"
           }
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center w-full text-purple-600 dark:text-purple-300 hover:underline"
         >
-          <span>
-            {language === "ko"
-              ? "어머니의 교훈 더 보기"
-              : "More Teachings of Mother"}
-          </span>
+          <span>{t("moreTeachings")}</span>
           <ExternalLink size={12} className="ml-1" />
         </Link>
       </CardFooter>

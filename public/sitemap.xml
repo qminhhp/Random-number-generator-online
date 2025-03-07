@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Main pages -->
+  <url>
+    <loc>https://easyrandomnumbers.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://easyrandomnumbers.com/vi/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Popular ranges pages -->
+  <url>
+    <loc>https://easyrandomnumbers.com/popular-ranges</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/popular-ranges"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/popular-ranges"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://easyrandomnumbers.com/vi/popular-ranges</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/popular-ranges"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/popular-ranges"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Mother's teachings pages -->
+  <url>
+    <loc>https://easyrandomnumbers.com/mothers-teachings</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/mothers-teachings"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/mothers-teachings"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://easyrandomnumbers.com/vi/mothers-teachings</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/mothers-teachings"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/mothers-teachings"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Common number ranges -->
+  <url>
+    <loc>https://easyrandomnumbers.com/1-10</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/1-10"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/1-10"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://easyrandomnumbers.com/vi/1-10</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/1-10"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/1-10"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://easyrandomnumbers.com/1-100</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/1-100"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/1-100"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://easyrandomnumbers.com/vi/1-100</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/1-100"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/1-100"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Category pages -->
+  <url>
+    <loc>https://easyrandomnumbers.com/category/basic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/category/basic"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/category/basic"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://easyrandomnumbers.com/vi/category/basic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://easyrandomnumbers.com/category/basic"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://easyrandomnumbers.com/vi/category/basic"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

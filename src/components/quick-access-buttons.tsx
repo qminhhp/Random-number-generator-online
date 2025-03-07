@@ -24,16 +24,14 @@ export function QuickAccessButtons({ onSelectRange }: QuickAccessButtonsProps) {
     onSelectRange(min, max);
 
     // Then navigate directly to the range page
-    const pathname = window.location.pathname;
-    const isVietnamese = pathname.startsWith("/vi");
-    const prefix = isVietnamese ? "/vi" : "";
+    const prefix = language === "vi" ? "/vi" : "";
     router.push(`${prefix}/${min}-${max}`);
   };
 
   return (
     <div>
       <h3 className="mb-2 font-medium text-blue-700 dark:text-blue-300">
-        {t ? t("quickRanges") : "Quick Ranges"}
+        {t("quickRanges")}
       </h3>
       <div className="grid grid-cols-3 gap-2">
         {presets.map((preset) => (
