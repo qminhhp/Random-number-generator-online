@@ -86,7 +86,57 @@ export function TeachingPrayer() {
               <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
                 <p>{t("thankYouMessage", selectedTeaching.id)}</p>
               </div>
-              <div className="flex justify-center mt-4">
+              <div className="flex flex-col items-center gap-3 mt-4">
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const teachingText =
+                        language === "vi" && selectedTeaching.vi
+                          ? selectedTeaching.vi.teaching
+                          : language === "ko" && selectedTeaching.ko
+                            ? selectedTeaching.ko.teaching
+                            : selectedTeaching.teaching;
+                      navigator.clipboard.writeText(teachingText);
+                      alert(t("copied"));
+                    }}
+                    className="flex items-center gap-1"
+                  >
+                    <span>{t("copy")}</span>
+                  </Button>
+
+                  {navigator.share && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        const teachingText =
+                          language === "vi" && selectedTeaching.vi
+                            ? selectedTeaching.vi.teaching
+                            : language === "ko" && selectedTeaching.ko
+                              ? selectedTeaching.ko.teaching
+                              : selectedTeaching.teaching;
+                        navigator
+                          .share({
+                            title: t("mothersTeachings"),
+                            text: `${t("teachingNumber", selectedTeaching.id)}: "${teachingText}"`,
+                            url:
+                              language === "vi" && selectedTeaching.vi
+                                ? selectedTeaching.vi.url
+                                : language === "ko" && selectedTeaching.ko
+                                  ? selectedTeaching.ko.url
+                                  : selectedTeaching.url,
+                          })
+                          .catch((err) => console.error("Share failed:", err));
+                      }}
+                      className="flex items-center gap-1"
+                    >
+                      <span>{t("share")}</span>
+                    </Button>
+                  )}
+                </div>
+
                 <Link
                   href={
                     language === "vi" && selectedTeaching.vi
