@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest) {
   // Get the pathname from the URL
   const pathname = request.nextUrl.pathname;
-  const { locale } = request;
 
   // Check if the path starts with /vi/ and handle language routing
   if (pathname.startsWith("/vi")) {
